@@ -6,13 +6,13 @@
 /*   By: oumondad <oumondad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:29:18 by oumondad          #+#    #+#             */
-/*   Updated: 2023/12/01 18:38:52 by oumondad         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:54:19 by oumondad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int nbrlen(long int nb)
+static int	nbrlen(int nb)
 {
 	int	i;
 
@@ -30,18 +30,20 @@ static	int nbrlen(long int nb)
 	return (i);
 }
 
-int	ft_putnbr(long int nb)
+int	ft_putnbr(int nb)
 {
-	long int nbr;
+	int	nbr;
 
 	nbr = nb;
-	if (nb < 0)
+	if (nbr == -2147483648)
+		write(1, "-2147483648", 11);
+	else if (nb < 0)
 	{
 		write(1, "-", 1);
 		nb *= -1;
 		ft_putnbr(nb);
 	}
-	else if(nb >= 0 && 9 >= nb)
+	else if (nb >= 0 && 9 >= nb)
 	{
 		ft_putchar(nb + '0');
 	}
